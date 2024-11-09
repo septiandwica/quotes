@@ -2,11 +2,10 @@ const express = require('express');
 const morgan = require('morgan');
 const helmet = require('helmet');
 const cors = require('cors');
-
 require('dotenv').config();
 
 const middlewares = require('./middlewares');
-const api = require('./api');
+const api = require('./api/api');
 
 const app = express();
 
@@ -17,10 +16,11 @@ app.use(express.json());
 
 app.get('/', (req, res) => {
   res.json({
-    message: '🦄🌈✨👋🌎🌍🌏✨🌈🦄',
+    message: 'Welcome to the Random Quotes API',
   });
 });
 
+// Gunakan routes di /api/v1
 app.use('/api/v1', api);
 
 app.use(middlewares.notFound);
